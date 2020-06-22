@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+      body {
+        margin: 15px 0;
+        height: 240px;
+        width: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="input-group mb-3">
+        <input id="user-input-url" type="text" class="form-control" placeholder="put url here" aria-label="test.com">
+        <div class="input-group-append">
+          <button id="apply-url" class="btn btn-outline-secondary" type="button">Apply</button>
+        </div>
+      </div>
+      <button id="clear-memory" class="btn btn-danger another">Clear</button>
+      <button id="submit-request" class="btn btn-primary another">Search</button>
+    </div>
+    <br>
+    <div id="append-area" class="container">
+      <!-- will retrieve data from memory later -->
+    </div>
+    <script src="js/jquery-3.5.1.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>
