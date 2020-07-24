@@ -4,6 +4,7 @@ module.exports = {
     // "es6": true,
     "browser": true,
     "webextensions": true,
+    "jquery": true
   },
   "extends": "eslint:recommended",
   "parserOptions": {
