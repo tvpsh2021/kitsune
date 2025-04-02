@@ -1,34 +1,33 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <style>
-      body {
-        margin: 15px 0;
-        height: 240px;
-        width: 400px;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <div class="input-group mb-3">
-        <input id="user-input-url" type="text" class="form-control">
-        <div class="input-group-append">
-          <button id="apply-url" class="apply-url btn btn-outline-secondary" type="button">Apply to G</button>
-        </div>
-      </div>
-      <button id="apply-all" class="btn btn-primary another">Apply All</button>
-      <button id="clear-all" class="btn btn-danger another">Clear All</button>
-      <button id="submit-search" class="btn btn-primary another">Search</button>
+<head>
+  <title>Search Result Filter</title>
+  <style>
+    body {
+      width: 300px;
+      padding: 10px;
+    }
+    .domain-input {
+      display: flex;
+      margin-bottom: 5px;
+    }
+    .domain-input input {
+      flex: 1;
+      margin-right: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Filter Domains</h2>
+  <div id="domains">
+    <div class="domain-input">
+      <input type="text" placeholder="Enter domain">
+      <button class="remove-btn">Remove</button>
     </div>
-    <br>
-    <div id="append-area" class="container">
-      <!-- will retrieve data from memory later -->
-    </div>
-    <script src="js/jquery-3.5.1.slim.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="popup.js"></script>
-  </body>
+  </div>
+  <button id="add-domain">Add Domain</button>
+  <button id="save">Save</button>
+
+  <script src="popup.js"></script>
+</body>
 </html>
