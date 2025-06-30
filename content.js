@@ -7,21 +7,17 @@ chrome.storage.sync.get('domains', (data) => {
 
   // Function to hide elements that contain blocked domains
   const hideBlockedResults = () => {
-    // General search results
-    const searchResults = document.querySelectorAll('.g');
-    searchResults.forEach(result => {
-      const link = result.querySelector('a');
+    // Find all h3 elements, which are typically the titles of search results.
+    document.querySelectorAll('h3').forEach(h3 => {
+      // Find the closest 'a' tag, which is the main link of the search result.
+      const link = h3.closest('a');
       if (link && isBlockedDomain(link.href)) {
-        result.style.display = 'none';
-      }
-    });
-
-    // Top News Section and News Tab
-    const newsResults = document.querySelectorAll('div[data-news-doc-id]');
-    newsResults.forEach(result => {
-      const link = result.querySelector('a');
-      if (link && isBlockedDomain(link.href)) {
-        result.style.display = 'none'; // Hide the entire block
+        // Find the container of the search result to hide it.
+        // Google often uses a div with a 'data-hveid' attribute for each result.
+        const searchResultContainer = h3.closest('div[data-hveid]');
+        if (searchResultContainer) {
+          searchResultContainer.style.display = 'none';
+        }
       }
     });
   };
