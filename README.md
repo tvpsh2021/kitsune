@@ -1,24 +1,23 @@
-# Kitsune
+# Kitsune: Your Personal Google Search Filter
 
-A simple Chrome Extension to filtered the Google Search Result for you, Kitsune will protect you far away from bad information.
+A simple but powerful Chrome Extension that empowers you to take control of your Google search results. Kitsune helps you filter out unwanted websites and focus on the information that matters most to you.
 
-## Why we need this
+## Why Kitsune?
 
-Because Google Search didn't provide an easy way to let user filtering out unnecessary search result.
-The only way you can do is put `-site: xxx.com` in the tail of your search bar.
+Are you tired of sifting through irrelevant search results? Do you wish you could permanently block certain websites from appearing in your searches? Kitsune is the solution you've been looking for. While Google allows you to use the `-site:` operator for temporary filtering, Kitsune provides a permanent and effortless way to customize your search experience.
 
-## Goal
+## Features
 
-- Have three button to operate Google Search Page
- - (1) Apply All: Apply all URL filter into Google Search Bar
- - (2) Clear All: Remove all URL filter in Google Search Bar
- - (3) Search: Using current condition to submit search request
-- Have an input column to insert URL filter into Google Search Bar & array inside the extension, with Apply button
-- Have a section with array list of URLs, every item has three button
- - (1) Apply: Apply URL filter into Google Search Bar
- - (2) Remove: Remove URL filter from Google Search Bar
- - (3) Delete: Delete URL from array
+- **Effortless Filtering:** Easily add or remove websites from your blocklist.
+- **Automatic Saving:** Your blocklist is saved automatically as you make changes.
+- **Streamlined Workflow:** Use the "Enter" key to quickly add new domains to your blocklist.
+- **Clean and Simple UI:** A user-friendly interface makes it easy to manage your blocklist.
 
-## TODO
+## Installation
 
-- Import jQuery
+1.  **Download the Extension:** Clone or download this repository to your local machine.
+2.  **Open Chrome Extensions:** Open Google Chrome and navigate to `chrome://extensions`.
+3.  **Enable Developer Mode:** Turn on the "Developer mode" toggle in the top-right corner.
+4.  **Load the Extension:** Click the "Load unpacked" button and select the directory where you saved the extension files.
+
+That's it! Kitsune is now installed and ready to use. You can click the Kitsune icon in your browser's toolbar to manage your blocklist.
