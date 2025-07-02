@@ -1,43 +1,148 @@
 document.addEventListener('DOMContentLoaded', () => {
   const domainsContainer = document.getElementById('domains');
-  const addDomainBtn = document.getElementById('add-domain');
-  const noDomainsMessage = document.getElementById('no-domains-message');
+  const addDomainBtn = document.getElementById('add-domain-btn');
+  const newDomainInput = document.getElementById('new-domain-input');
+  const suggestionsContainer = document.getElementById('suggestions');
+  const noDomainsMessage = document.createElement('p');
+  noDomainsMessage.classList.add('no-domains-message');
+  noDomainsMessage.textContent = "No domains added yet. Add one above!";
+
+  const noSuggestionsMessage = document.createElement('p');
+  noSuggestionsMessage.classList.add('no-domains-message');
+  noSuggestionsMessage.textContent = "No domain suggestions found from current page.";
+
+  const feedbackMessage = document.createElement('div');
+  feedbackMessage.classList.add('feedback-message');
+  document.querySelector('.container').insertBefore(feedbackMessage, document.getElementById('main-view'));
+
+  // Settings
+  const settingsBtn = document.getElementById('settings-btn');
+  const backBtn = document.getElementById('back-btn');
+  const mainView = document.getElementById('main-view');
+  const settingsView = document.getElementById('settings-view');
+  const googleComCheckbox = document.getElementById('google-com-checkbox');
+
+  settingsBtn.addEventListener('click', () => {
+    mainView.style.display = 'none';
+    settingsView.style.display = 'block';
+  });
+
+  backBtn.addEventListener('click', () => {
+    mainView.style.display = 'block';
+    settingsView.style.display = 'none';
+  });
+
+  chrome.storage.sync.get('googleComEnabled', (data) => {
+    googleComCheckbox.checked = data.googleComEnabled !== false;
+  });
+
+  googleComCheckbox.addEventListener('change', () => {
+    chrome.storage.sync.set({ googleComEnabled: googleComCheckbox.checked });
+  });
+
+
+  function showFeedback(message, isError = false) {
+    feedbackMessage.textContent = message;
+    feedbackMessage.style.display = 'block';
+    feedbackMessage.style.backgroundColor = isError ? '#fa383e' : '#42b72a';
+    feedbackMessage.style.color = '#fff';
+    feedbackMessage.style.padding = '8px';
+    feedbackMessage.style.borderRadius = '4px';
+    feedbackMessage.style.marginTop = '10px';
+    feedbackMessage.style.textAlign = 'center';
+    setTimeout(() => {
+      feedbackMessage.style.display = 'none';
+    }, 3000);
+  }
 
   function updateMessageVisibility() {
     if (domainsContainer.children.length === 0) {
-      noDomainsMessage.style.display = 'block';
-    } else {
-      noDomainsMessage.style.display = 'none';
+      domainsContainer.appendChild(noDomainsMessage);
+    } else if (domainsContainer.contains(noDomainsMessage)) {
+      domainsContainer.removeChild(noDomainsMessage);
     }
   }
 
   function saveDomains() {
-    const domainInputs = document.querySelectorAll('.domain-input input');
-    const domains = Array.from(domainInputs).map(input => input.value).filter(value => value.trim() !== '');
-    chrome.storage.sync.set({ domains });
+    const domainItems = document.querySelectorAll('.domain-item .domain-name');
+    const domains = Array.from(domainItems).map(item => item.textContent).filter(value => value.trim() !== '');
+    chrome.storage.sync.set({ domains }, updateMessageVisibility);
   }
 
-  function createDomainInput(value = '') {
+  function createDomainElement(domain) {
     const div = document.createElement('div');
-    div.classList.add('domain-input');
+    div.classList.add('domain-item');
     div.innerHTML = `
-      <input type="text" placeholder="Enter domain" value="${value}">
-      <button class="remove-btn">Remove</button>
+      <span class="domain-name">${domain}</span>
+      <button class="remove-btn" title="Remove domain">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
     `;
-    const input = div.querySelector('input');
-    input.addEventListener('input', saveDomains);
-    input.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') {
-        addDomainBtn.click();
-      }
-    });
 
     div.querySelector('.remove-btn').addEventListener('click', () => {
-      div.remove();
-      saveDomains();
-      updateMessageVisibility();
+      div.classList.add('fade-out');
+      div.addEventListener('animationend', () => {
+        div.remove();
+        saveDomains();
+      }, { once: true });
     });
     return div;
+  }
+
+  function addDomain(domainToAdd) {
+    const domain = domainToAdd || newDomainInput.value.trim();
+    if (domain) {
+      const existingDomains = Array.from(document.querySelectorAll('.domain-item .domain-name')).map(item => item.textContent);
+      if (!existingDomains.includes(domain)) {
+        const domainElement = createDomainElement(domain);
+        domainsContainer.appendChild(domainElement);
+        domainElement.classList.add('fade-in');
+        saveDomains();
+        newDomainInput.value = '';
+        newDomainInput.classList.remove('invalid');
+        newDomainInput.focus();
+        showFeedback(`'${domain}' added successfully!`);
+      } else {
+        newDomainInput.classList.add('invalid');
+        newDomainInput.value = domain; // Keep the existing domain in the input field
+        showFeedback(`'${domain}' is already in your blocked list.`, true);
+      }
+    } else {
+      newDomainInput.classList.add('invalid');
+      showFeedback("Please enter a domain.", true);
+    }
+  }
+
+  function displaySuggestions(suggestions) {
+    suggestionsContainer.innerHTML = '';
+    if (suggestions.length === 0) {
+      suggestionsContainer.appendChild(noSuggestionsMessage);
+      return;
+    }
+
+    suggestions.forEach(suggestion => {
+      const div = document.createElement('div');
+      div.classList.add('suggestion-item', 'fade-in'); // Add fade-in for initial display
+      div.innerHTML = `
+        <span class="suggestion-domain" title="${suggestion}">${suggestion}</span>
+        <button class="add-suggestion-btn">Add</button>
+      `;
+      div.querySelector('.add-suggestion-btn').addEventListener('click', (e) => {
+        addDomain(suggestion);
+        // Animate removal from suggestions
+        const itemToRemove = e.target.closest('.suggestion-item');
+        if (itemToRemove) {
+          itemToRemove.classList.add('fade-out');
+          itemToRemove.addEventListener('animationend', () => {
+            itemToRemove.remove();
+            if (suggestionsContainer.children.length === 0) {
+              suggestionsContainer.appendChild(noSuggestionsMessage);
+            }
+          }, { once: true });
+        }
+      });
+      suggestionsContainer.appendChild(div);
+    });
   }
 
   // Load saved domains
@@ -46,22 +151,41 @@ document.addEventListener('DOMContentLoaded', () => {
     domainsContainer.innerHTML = ''; // Clear existing
     if (domains.length > 0) {
       domains.forEach(domain => {
-        domainsContainer.appendChild(createDomainInput(domain));
+        domainsContainer.appendChild(createDomainElement(domain));
       });
     }
     updateMessageVisibility();
   });
 
-  addDomainBtn.addEventListener('click', () => {
-    const newField = createDomainInput();
-    domainsContainer.appendChild(newField);
-    newField.querySelector('input').focus();
-    updateMessageVisibility();
+  // Request suggestions from content script
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    if (tabs[0] && tabs[0].id) {
+      chrome.tabs.sendMessage(tabs[0].id, { action: "getSuggestions" }, (response) => {
+        if (chrome.runtime.lastError) {
+          console.error("Error sending message: ", chrome.runtime.lastError.message);
+          displaySuggestions([]); // No suggestions or error
+          suggestionsContainer.innerHTML = '<p class="no-domains-message">Suggestions are only available on Google search results pages.</p>';
+          return;
+        }
+        if (response && response.suggestions) {
+          displaySuggestions(response.suggestions);
+        } else {
+          displaySuggestions([]); // No suggestions or error
+        }
+      });
+    }
   });
 
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' && document.activeElement.tagName !== 'INPUT') {
-      addDomainBtn.click();
+  addDomainBtn.addEventListener('click', () => addDomain());
+  newDomainInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      addDomain();
+    }
+  });
+
+  newDomainInput.addEventListener('input', () => {
+    if (newDomainInput.classList.contains('invalid') && newDomainInput.value.trim() !== '') {
+      newDomainInput.classList.remove('invalid');
     }
   });
 });

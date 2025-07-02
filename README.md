@@ -13,6 +13,23 @@ Are you tired of sifting through irrelevant search results? Do you wish you coul
 - **Streamlined Workflow:** Use the "Enter" key to quickly add new domains to your blocklist.
 - **Clean and Simple UI:** A user-friendly interface makes it easy to manage your blocklist.
 
+## Release History
+
+### Version 1.2
+
+-   **Smarter Filtering:** Adapted to recent changes in Google's search results page to ensure consistent and reliable domain blocking.
+-   **Modern UI/UX:** Overhauled the user interface with a fresh, modern design for a more intuitive and visually appealing experience.
+-   **Intelligent Suggestions:** The extension now intelligently suggests domains to block based on your current search results, making it easier to discover and filter unwanted sites.
+-   **Granular Control:** Added a new settings page that allows you to toggle filtering on and off for specific websites, starting with google.com.
+
+### Version 1.1
+
+-   Initial prototype release, establishing the core domain blocking functionality.
+
+### Version 1.0
+
+-   First proof-of-concept and foundational build.
+
 ## Installation
 
 1.  **Download the Extension:** Clone or download this repository to your local machine.
