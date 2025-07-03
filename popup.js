@@ -23,13 +23,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const googleComCheckbox = document.getElementById('google-com-checkbox');
 
   settingsBtn.addEventListener('click', () => {
-    mainView.style.display = 'none';
-    settingsView.style.display = 'block';
+    mainView.classList.add('hidden');
+    settingsView.classList.remove('hidden');
   });
 
   backBtn.addEventListener('click', () => {
-    mainView.style.display = 'block';
-    settingsView.style.display = 'none';
+    settingsView.classList.add('hidden');
+    mainView.classList.remove('hidden');
   });
 
   chrome.storage.sync.get('googleComEnabled', (data) => {
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
     div.innerHTML = `
       <span class="domain-name">${domain}</span>
       <button class="remove-btn" title="Remove domain">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
       </button>
     `;
 

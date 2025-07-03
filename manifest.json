@@ -2,9 +2,8 @@
   "manifest_version": 3,
   "name": "Search Result Filter",
   "description": "Remove specific search results from Google.com.",
-  "version": "1.3",
+  "version": "1.3.1",
   "permissions": [
-    "activeTab",
     "storage"
   ],
   "action": {

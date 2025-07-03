@@ -1,4 +1,29 @@
-// Function to extract domains from search results for suggestions
+// Global state for filters
+let blockedDomains = [];
+let isFilterEnabled = true;
+
+// Function to hide search results that match the blocked domains
+const hideBlockedResults = () => {
+  if (!isFilterEnabled || blockedDomains.length === 0) {
+    return; // Stop if filtering is disabled or no domains are blocked
+  }
+
+  const isBlockedDomain = (url) => blockedDomains.some(domain => url.includes(domain));
+
+  document.querySelectorAll('h3').forEach(h3 => {
+    const link = h3.closest('a');
+    if (link && isBlockedDomain(link.href)) {
+      // Find a container for the search result to hide it.
+      // This selector might need updates if Google changes its page structure.
+      const searchResultContainer = h3.closest('div[data-hveid]');
+      if (searchResultContainer && searchResultContainer.style.display !== 'none') {
+        searchResultContainer.style.display = 'none';
+      }
+    }
+  });
+};
+
+// Function to extract domains from the current page for suggestions
 const extractDomains = () => {
   const extractedDomains = new Set();
   document.querySelectorAll('a').forEach(link => {
@@ -15,47 +40,46 @@ const extractDomains = () => {
   return Array.from(extractedDomains);
 };
 
-// Always listen for messages from the popup to provide suggestions
+// Listen for messages from the popup (e.g., to get suggestions)
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === "getSuggestions") {
     sendResponse({ suggestions: extractDomains() });
+    return true; // Keep the message channel open for the asynchronous response
   }
-  return true; // Keep the message channel open for the asynchronous response
 });
 
-// Main filtering logic
-chrome.storage.sync.get(['domains', 'googleComEnabled'], (data) => {
-  // Filtering is enabled by default if the setting isn't explicitly false
-  const isEnabled = data.googleComEnabled !== false;
+// Listen for changes in storage to update the filters in real-time
+chrome.storage.onChanged.addListener((changes, namespace) => {
+  if (namespace === 'sync') {
+    let needsUpdate = false;
+    if (changes.domains) {
+      blockedDomains = changes.domains.newValue || [];
+      needsUpdate = true;
+    }
+    if (changes.googleComEnabled) {
+      isFilterEnabled = changes.googleComEnabled.newValue !== false;
+      needsUpdate = true;
+    }
 
-  if (!isEnabled) {
-    return; // Stop execution if filtering is disabled for this site
+    if (needsUpdate) {
+      // Note: This version doesn't un-hide results if a domain is removed or
+      // filtering is disabled. A page refresh would be needed.
+      hideBlockedResults();
+    }
   }
-
-  const domains = data.domains || [];
-  if (domains.length === 0) {
-    return; // No domains to filter
-  }
-
-  const isBlockedDomain = (url) => domains.some(domain => url.includes(domain));
-
-  const hideBlockedResults = () => {
-    document.querySelectorAll('h3').forEach(h3 => {
-      const link = h3.closest('a');
-      if (link && isBlockedDomain(link.href)) {
-        // Find the most common container for Google search results to hide it.
-        const searchResultContainer = h3.closest('div[data-hveid]');
-        if (searchResultContainer) {
-          searchResultContainer.style.display = 'none';
-        }
-      }
-    });
-  };
-
-  // Initial run
-  hideBlockedResults();
-
-  // Set up a MutationObserver to handle dynamically loaded content
-  const observer = new MutationObserver(hideBlockedResults);
-  observer.observe(document.body, { childList: true, subtree: true });
 });
+
+// Initial load of settings and first run of the filter
+const initialize = () => {
+  chrome.storage.sync.get(['domains', 'googleComEnabled'], (data) => {
+    isFilterEnabled = data.googleComEnabled !== false;
+    blockedDomains = data.domains || [];
+    hideBlockedResults();
+
+    // Set up a MutationObserver to handle dynamically loaded content
+    const observer = new MutationObserver(hideBlockedResults);
+    observer.observe(document.body, { childList: true, subtree: true });
+  });
+};
+
+initialize();
