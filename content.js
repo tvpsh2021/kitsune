@@ -1,4 +1,3 @@
-// Global state for filters
 let blockedDomains = [];
 let isFilterEnabled = true;
 
@@ -10,16 +9,27 @@ const hideBlockedResults = () => {
 
   const isBlockedDomain = (url) => blockedDomains.some(domain => url.includes(domain));
 
+  // Standard search results
   document.querySelectorAll('h3').forEach(h3 => {
     const link = h3.closest('a');
     if (link && isBlockedDomain(link.href)) {
-      // Find a container for the search result to hide it.
-      // This selector might need updates if Google changes its page structure.
       const searchResultContainer = h3.closest('div[data-hveid]');
       if (searchResultContainer && searchResultContainer.style.display !== 'none') {
         searchResultContainer.style.display = 'none';
       }
     }
+  });
+
+  // Section (Top stories, Local news, ...)
+  document.querySelectorAll('g-section-with-header').forEach(section => {
+    section.querySelectorAll('a').forEach(link => {
+      if (isBlockedDomain(link.href)) {
+        const storyContainer = link.closest('div[data-hveid]');
+        if (storyContainer && storyContainer.style.display !== 'none') {
+          storyContainer.style.display = 'none';
+        }
+      }
+    });
   });
 };
 
@@ -42,7 +52,7 @@ const extractDomains = () => {
 
 // Listen for messages from the popup (e.g., to get suggestions)
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  if (request.action === "getSuggestions") {
+  if (request.action === 'getSuggestions') {
     sendResponse({ suggestions: extractDomains() });
     return true; // Keep the message channel open for the asynchronous response
   }

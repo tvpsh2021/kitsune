@@ -8,6 +8,9 @@ Are you tired of sifting through irrelevant search results? Do you wish you coul
 
 ## Features
 
+- **Enhanced Filtering:** Filters not just search links, but also special sections like "Top stories" and "Local news".
+- **Intelligent Suggestions:** Intelligently suggests domains to block based on your current search results.
+- **Granular Control:** A settings page allows you to toggle filtering on and off for specific websites.
 - **Effortless Filtering:** Easily add or remove websites from your blocklist.
 - **Automatic Saving:** Your blocklist is saved automatically as you make changes.
 - **Streamlined Workflow:** Use the "Enter" key to quickly add new domains to your blocklist.
@@ -15,12 +18,21 @@ Are you tired of sifting through irrelevant search results? Do you wish you coul
 
 ## Release History
 
-### Version 1.2
+### Version 1.4
+
+-   **Enhanced Filtering:** Now capable of filtering content within specific sections of Google search results, such as "Top stories" or "Local news," providing a cleaner and more focused browsing experience.
+-   **Code Quality:** Integrated ESLint to enforce consistent coding styles and improve code quality. Added new linting scripts to the development workflow.
+
+### Version 1.3
 
 -   **Smarter Filtering:** Adapted to recent changes in Google's search results page to ensure consistent and reliable domain blocking.
 -   **Modern UI/UX:** Overhauled the user interface with a fresh, modern design for a more intuitive and visually appealing experience.
 -   **Intelligent Suggestions:** The extension now intelligently suggests domains to block based on your current search results, making it easier to discover and filter unwanted sites.
 -   **Granular Control:** Added a new settings page that allows you to toggle filtering on and off for specific websites, starting with google.com.
+
+### Version 1.2
+
+-   UI/UX updated.
 
 ### Version 1.1
 
@@ -29,6 +41,20 @@ Are you tired of sifting through irrelevant search results? Do you wish you coul
 ### Version 1.0
 
 -   First proof-of-concept and foundational build.
+
+## Development
+
+We use ESLint to maintain code quality. You can check for linting errors with:
+
+```bash
+npm run lint
+```
+
+To automatically fix any issues, run:
+
+```bash
+npm run lint:fix
+```
 
 ## Installation
 

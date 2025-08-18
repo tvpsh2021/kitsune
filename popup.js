@@ -5,11 +5,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const suggestionsContainer = document.getElementById('suggestions');
   const noDomainsMessage = document.createElement('p');
   noDomainsMessage.classList.add('no-domains-message');
-  noDomainsMessage.textContent = chrome.i18n.getMessage("noDomainsAdded");
+  noDomainsMessage.textContent = chrome.i18n.getMessage('noDomainsAdded');
 
   const noSuggestionsMessage = document.createElement('p');
   noSuggestionsMessage.classList.add('no-domains-message');
-  noSuggestionsMessage.textContent = chrome.i18n.getMessage("noSuggestionsFound");
+  noSuggestionsMessage.textContent = chrome.i18n.getMessage('noSuggestionsFound');
 
   const feedbackMessage = document.createElement('div');
   feedbackMessage.classList.add('feedback-message');
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
     div.classList.add('domain-item');
     div.innerHTML = `
       <span class="domain-name">${domain}</span>
-      <button class="remove-btn" title="${chrome.i18n.getMessage("removeDomainBtnTitle")}">
+      <button class="remove-btn" title="${chrome.i18n.getMessage('removeDomainBtnTitle')}">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
       </button>
     `;
@@ -119,15 +119,15 @@ document.addEventListener('DOMContentLoaded', () => {
         newDomainInput.value = '';
         newDomainInput.classList.remove('invalid');
         newDomainInput.focus();
-        showFeedback(chrome.i18n.getMessage("domainAddedSuccess", domain));
+        showFeedback(chrome.i18n.getMessage('domainAddedSuccess', domain));
       } else {
         newDomainInput.classList.add('invalid');
         newDomainInput.value = domain; // Keep the existing domain in the input field
-        showFeedback(chrome.i18n.getMessage("domainAlreadyBlocked", domain), true);
+        showFeedback(chrome.i18n.getMessage('domainAlreadyBlocked', domain), true);
       }
     } else {
       newDomainInput.classList.add('invalid');
-      showFeedback(chrome.i18n.getMessage("pleaseEnterDomain"), true);
+      showFeedback(chrome.i18n.getMessage('pleaseEnterDomain'), true);
     }
   }
 
@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
       div.classList.add('suggestion-item', 'fade-in'); // Add fade-in for initial display
       div.innerHTML = `
         <span class="suggestion-domain" title="${suggestion}">${suggestion}</span>
-        <button class="add-suggestion-btn">${chrome.i18n.getMessage("addSuggestionBtn")}</button>
+        <button class="add-suggestion-btn">${chrome.i18n.getMessage('addSuggestionBtn')}</button>
       `;
       div.querySelector('.add-suggestion-btn').addEventListener('click', (e) => {
         addDomain(suggestion);
@@ -178,11 +178,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // Request suggestions from content script
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     if (tabs[0] && tabs[0].id) {
-      chrome.tabs.sendMessage(tabs[0].id, { action: "getSuggestions" }, (response) => {
+      chrome.tabs.sendMessage(tabs[0].id, { action: 'getSuggestions' }, (response) => {
         if (chrome.runtime.lastError) {
-          console.error("Error sending message: ", chrome.runtime.lastError.message);
+          console.error('Error sending message: ', chrome.runtime.lastError.message);
           displaySuggestions([]); // No suggestions or error
-          suggestionsContainer.innerHTML = `<p class="no-domains-message">${chrome.i18n.getMessage("suggestionsUnavailable")}</p>`;
+          suggestionsContainer.innerHTML = `<p class="no-domains-message">${chrome.i18n.getMessage('suggestionsUnavailable')}</p>`;
           return;
         }
         if (response && response.suggestions) {
