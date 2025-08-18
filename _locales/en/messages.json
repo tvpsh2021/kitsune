@@ -1,0 +1,78 @@
+{
+  "extDesc": {
+    "message": "Remove specific search results from Google.com.",
+    "description": "The description of the extension."
+  },
+  "settingsBtnTitle": {
+    "message": "Settings",
+    "description": "The title for the settings button."
+  },
+  "suggestedDomains": {
+    "message": "Suggested Domains",
+    "description": "Header for the suggested domains section."
+  },
+  "addDomainPlaceholder": {
+    "message": "Add a domain to block",
+    "description": "Placeholder text for the input field to add a new domain."
+  },
+  "addDomainBtnTitle": {
+    "message": "Add domain",
+    "description": "Title for the add domain button."
+  },
+  "backBtnTitle": {
+    "message": "Back to main view",
+    "description": "Title for the back button in the settings view."
+  },
+  "settingsTitle": {
+    "message": "Settings",
+    "description": "The title of the settings section."
+  },
+  "activeOnWebsites": {
+    "message": "Active on Websites",
+    "description": "Header for the section to enable/disable the extension on specific websites."
+  },
+  "noDomainsAdded": {
+    "message": "No domains added yet. Add one above!",
+    "description": "Message displayed when the list of blocked domains is empty."
+  },
+  "noSuggestionsFound": {
+    "message": "No domain suggestions found from current page.",
+    "description": "Message displayed when no domain suggestions are available."
+  },
+  "domainAddedSuccess": {
+    "message": "'$domain$' added successfully!",
+    "description": "Success message when a domain is added.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "domainAlreadyBlocked": {
+    "message": "'$domain$' is already in your blocked list.",
+    "description": "Error message when trying to add a domain that is already blocked.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "pleaseEnterDomain": {
+    "message": "Please enter a domain.",
+    "description": "Error message when the user tries to add an empty domain."
+  },
+  "suggestionsUnavailable": {
+    "message": "Suggestions are only available on Google search results pages.",
+    "description": "Message displayed when domain suggestions are not available."
+  },
+  "removeDomainBtnTitle": {
+    "message": "Remove domain",
+    "description": "Title for the remove domain button."
+  },
+  "addSuggestionBtn": {
+    "message": "Add",
+    "description": "Text for the button to add a suggested domain."
+  }
+}

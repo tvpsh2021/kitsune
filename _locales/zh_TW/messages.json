@@ -1,0 +1,78 @@
+{
+  "extDesc": {
+    "message": "從 Google.com 移除特定的搜尋結果。",
+    "description": "擴充功能的描述。"
+  },
+  "settingsBtnTitle": {
+    "message": "設定",
+    "description": "設定按鈕的標題。"
+  },
+  "suggestedDomains": {
+    "message": "建議的網域",
+    "description": "建議網域區塊的標頭。"
+  },
+  "addDomainPlaceholder": {
+    "message": "新增要封鎖的網域",
+    "description": "新增網域輸入欄位的預設顯示文字。"
+  },
+  "addDomainBtnTitle": {
+    "message": "新增網域",
+    "description": "新增網域按鈕的標題。"
+  },
+  "backBtnTitle": {
+    "message": "返回主畫面",
+    "description": "設定頁面中返回按鈕的標題。"
+  },
+  "settingsTitle": {
+    "message": "設定",
+    "description": "設定區塊的標題。"
+  },
+  "activeOnWebsites": {
+    "message": "在這些網站上啟用",
+    "description": "啟用/停用擴充功能於特定網站的區塊標頭。"
+  },
+  "noDomainsAdded": {
+    "message": "尚未新增任何網域。請在上方新增！",
+    "description": "封鎖網域清單為空時顯示的訊息。"
+  },
+  "noSuggestionsFound": {
+    "message": "在當前頁面找不到任何建議的網域。",
+    "description": "沒有可用的建議網域時顯示的訊息。"
+  },
+  "domainAddedSuccess": {
+    "message": "已成功新增 '$domain$'！",
+    "description": "成功新增網域時的訊息。",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "domainAlreadyBlocked": {
+    "message": "'$domain$' 已在您的封鎖清單中。",
+    "description": "嘗試新增的網域已存在於封鎖清單時的錯誤訊息。",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "pleaseEnterDomain": {
+    "message": "請輸入一個網域。",
+    "description": "使用者嘗試新增空白網域時的錯誤訊息。"
+  },
+  "suggestionsUnavailable": {
+    "message": "建議功能僅在 Google 搜尋結果頁面提供。",
+    "description": "建議網域功能不可用時顯示的訊息。"
+  },
+  "removeDomainBtnTitle": {
+    "message": "移除網域",
+    "description": "移除網域按鈕的標題。"
+  },
+  "addSuggestionBtn": {
+    "message": "新增",
+    "description": "新增建議網域按鈕的文字。"
+  }
+}

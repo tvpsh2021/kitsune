@@ -5,11 +5,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const suggestionsContainer = document.getElementById('suggestions');
   const noDomainsMessage = document.createElement('p');
   noDomainsMessage.classList.add('no-domains-message');
-  noDomainsMessage.textContent = "No domains added yet. Add one above!";
+  noDomainsMessage.textContent = chrome.i18n.getMessage("noDomainsAdded");
 
   const noSuggestionsMessage = document.createElement('p');
   noSuggestionsMessage.classList.add('no-domains-message');
-  noSuggestionsMessage.textContent = "No domain suggestions found from current page.";
+  noSuggestionsMessage.textContent = chrome.i18n.getMessage("noSuggestionsFound");
 
   const feedbackMessage = document.createElement('div');
   feedbackMessage.classList.add('feedback-message');
@@ -21,6 +21,24 @@ document.addEventListener('DOMContentLoaded', () => {
   const mainView = document.getElementById('main-view');
   const settingsView = document.getElementById('settings-view');
   const googleComCheckbox = document.getElementById('google-com-checkbox');
+
+  // Function to set text from locale
+  function setI18nText() {
+    document.querySelectorAll('[data-i18n]').forEach(elem => {
+      const key = elem.getAttribute('data-i18n');
+      elem.textContent = chrome.i18n.getMessage(key);
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(elem => {
+      const key = elem.getAttribute('data-i18n-placeholder');
+      elem.placeholder = chrome.i18n.getMessage(key);
+    });
+    document.querySelectorAll('[data-i18n-title]').forEach(elem => {
+      const key = elem.getAttribute('data-i18n-title');
+      elem.title = chrome.i18n.getMessage(key);
+    });
+  }
+
+  setI18nText();
 
   settingsBtn.addEventListener('click', () => {
     mainView.classList.add('hidden');
@@ -74,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
     div.classList.add('domain-item');
     div.innerHTML = `
       <span class="domain-name">${domain}</span>
-      <button class="remove-btn" title="Remove domain">
+      <button class="remove-btn" title="${chrome.i18n.getMessage("removeDomainBtnTitle")}">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
       </button>
     `;
@@ -101,15 +119,15 @@ document.addEventListener('DOMContentLoaded', () => {
         newDomainInput.value = '';
         newDomainInput.classList.remove('invalid');
         newDomainInput.focus();
-        showFeedback(`'${domain}' added successfully!`);
+        showFeedback(chrome.i18n.getMessage("domainAddedSuccess", domain));
       } else {
         newDomainInput.classList.add('invalid');
         newDomainInput.value = domain; // Keep the existing domain in the input field
-        showFeedback(`'${domain}' is already in your blocked list.`, true);
+        showFeedback(chrome.i18n.getMessage("domainAlreadyBlocked", domain), true);
       }
     } else {
       newDomainInput.classList.add('invalid');
-      showFeedback("Please enter a domain.", true);
+      showFeedback(chrome.i18n.getMessage("pleaseEnterDomain"), true);
     }
   }
 
@@ -125,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
       div.classList.add('suggestion-item', 'fade-in'); // Add fade-in for initial display
       div.innerHTML = `
         <span class="suggestion-domain" title="${suggestion}">${suggestion}</span>
-        <button class="add-suggestion-btn">Add</button>
+        <button class="add-suggestion-btn">${chrome.i18n.getMessage("addSuggestionBtn")}</button>
       `;
       div.querySelector('.add-suggestion-btn').addEventListener('click', (e) => {
         addDomain(suggestion);
@@ -164,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (chrome.runtime.lastError) {
           console.error("Error sending message: ", chrome.runtime.lastError.message);
           displaySuggestions([]); // No suggestions or error
-          suggestionsContainer.innerHTML = '<p class="no-domains-message">Suggestions are only available on Google search results pages.</p>';
+          suggestionsContainer.innerHTML = `<p class="no-domains-message">${chrome.i18n.getMessage("suggestionsUnavailable")}</p>`;
           return;
         }
         if (response && response.suggestions) {
