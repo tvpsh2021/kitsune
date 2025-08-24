@@ -1,6 +1,6 @@
 {
   "extDesc": {
-    "message": "Remove specific search results from Google.com.",
+    "message": "Remove specific search results from Google and Bing.",
     "description": "The description of the extension."
   },
   "settingsBtnTitle": {
@@ -30,6 +30,34 @@
   "activeOnWebsites": {
     "message": "Active on Websites",
     "description": "Header for the section to enable/disable the extension on specific websites."
+  },
+  "languageSettings": {
+    "message": "Language Settings",
+    "description": "The title of the language settings section."
+  },
+  "selectLanguage": {
+    "message": "Select Language",
+    "description": "Label for language selection."
+  },
+  "languageDefault": {
+    "message": "Follow browser settings",
+    "description": "Default language setting option."
+  },
+  "languageEnglish": {
+    "message": "English",
+    "description": "English language option."
+  },
+  "languageChinese": {
+    "message": "繁體中文",
+    "description": "Traditional Chinese language option."
+  },
+  "languageJapanese": {
+    "message": "日本語",
+    "description": "Japanese language option."
+  },
+  "comingSoon": {
+    "message": "Coming Soon",
+    "description": "Text for features that are not yet implemented."
   },
   "noDomainsAdded": {
     "message": "No domains added yet. Add one above!",
@@ -64,7 +92,7 @@
     "description": "Error message when the user tries to add an empty domain."
   },
   "suggestionsUnavailable": {
-    "message": "Suggestions are only available on Google search results pages.",
+    "message": "Suggestions are only available on Google and Bing search results pages.",
     "description": "Message displayed when domain suggestions are not available."
   },
   "removeDomainBtnTitle": {

@@ -1,6 +1,6 @@
 {
   "extDesc": {
-    "message": "從 Google.com 移除特定的搜尋結果。",
+    "message": "從 Google 和 Bing 移除特定的搜尋結果。",
     "description": "擴充功能的描述。"
   },
   "settingsBtnTitle": {
@@ -30,6 +30,34 @@
   "activeOnWebsites": {
     "message": "在這些網站上啟用",
     "description": "啟用/停用擴充功能於特定網站的區塊標頭。"
+  },
+  "languageSettings": {
+    "message": "語言設定",
+    "description": "語言設定區塊的標題。"
+  },
+  "selectLanguage": {
+    "message": "選擇語言",
+    "description": "語言選擇的標籤。"
+  },
+  "languageDefault": {
+    "message": "跟隨瀏覽器設定",
+    "description": "預設語言設定選項。"
+  },
+  "languageEnglish": {
+    "message": "English",
+    "description": "英語語言選項。"
+  },
+  "languageChinese": {
+    "message": "繁體中文",
+    "description": "繁體中文語言選項。"
+  },
+  "languageJapanese": {
+    "message": "日本語",
+    "description": "日語語言選項。"
+  },
+  "comingSoon": {
+    "message": "即將推出",
+    "description": "尚未實現功能的文字。"
   },
   "noDomainsAdded": {
     "message": "尚未新增任何網域。請在上方新增！",
@@ -64,7 +92,7 @@
     "description": "使用者嘗試新增空白網域時的錯誤訊息。"
   },
   "suggestionsUnavailable": {
-    "message": "建議功能僅在 Google 搜尋結果頁面提供。",
+    "message": "建議功能僅在 Google 和 Bing 搜尋結果頁面提供。",
     "description": "建議網域功能不可用時顯示的訊息。"
   },
   "removeDomainBtnTitle": {

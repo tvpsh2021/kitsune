@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Search Result Filter",
   "description": "__MSG_extDesc__",
-  "version": "1.4.0",
+  "version": "1.5.1",
   "default_locale": "en",
   "permissions": [
     "storage"
@@ -17,7 +17,10 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://www.google.com/*"],
+      "matches": [
+        "https://www.google.com/*",
+        "https://www.bing.com/*"
+      ],
       "js": ["content.js"]
     }
   ],
@@ -25,5 +28,11 @@
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
-  }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["_locales/*/messages.json"],
+      "matches": ["<all_urls>"]
+    }
+  ]
 }

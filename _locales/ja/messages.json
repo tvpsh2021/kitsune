@@ -1,0 +1,106 @@
+{
+  "extDesc": {
+    "message": "GoogleとBingから特定の検索結果を除去します。",
+    "description": "拡張機能の説明。"
+  },
+  "settingsBtnTitle": {
+    "message": "設定",
+    "description": "設定ボタンのタイトル。"
+  },
+  "suggestedDomains": {
+    "message": "推奨ドメイン",
+    "description": "推奨ドメインセクションのヘッダー。"
+  },
+  "addDomainPlaceholder": {
+    "message": "ブロックするドメインを追加",
+    "description": "新しいドメインを追加する入力フィールドのプレースホルダーテキスト。"
+  },
+  "addDomainBtnTitle": {
+    "message": "ドメインを追加",
+    "description": "ドメイン追加ボタンのタイトル。"
+  },
+  "backBtnTitle": {
+    "message": "メイン画面に戻る",
+    "description": "設定画面の戻るボタンのタイトル。"
+  },
+  "settingsTitle": {
+    "message": "設定",
+    "description": "設定セクションのタイトル。"
+  },
+  "activeOnWebsites": {
+    "message": "有効なウェブサイト",
+    "description": "特定のウェブサイトで拡張機能を有効/無効にするセクションのヘッダー。"
+  },
+  "languageSettings": {
+    "message": "言語設定",
+    "description": "言語設定セクションのタイトル。"
+  },
+  "selectLanguage": {
+    "message": "言語を選択",
+    "description": "言語選択のラベル。"
+  },
+  "languageDefault": {
+    "message": "ブラウザの設定に従う",
+    "description": "デフォルト言語設定のオプション。"
+  },
+  "languageEnglish": {
+    "message": "English",
+    "description": "英語言語オプション。"
+  },
+  "languageChinese": {
+    "message": "繁體中文",
+    "description": "中国語（繁体字）言語オプション。"
+  },
+  "languageJapanese": {
+    "message": "日本語",
+    "description": "日本語言語オプション。"
+  },
+  "noDomainsAdded": {
+    "message": "まだドメインが追加されていません。上記で追加してください！",
+    "description": "ブロックされたドメインのリストが空の時に表示されるメッセージ。"
+  },
+  "noSuggestionsFound": {
+    "message": "現在のページからドメインの提案が見つかりませんでした。",
+    "description": "ドメインの提案が利用できない時に表示されるメッセージ。"
+  },
+  "domainAddedSuccess": {
+    "message": "'$domain$'が正常に追加されました！",
+    "description": "ドメインが追加された時の成功メッセージ。",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "domainAlreadyBlocked": {
+    "message": "'$domain$'は既にブロックリストに含まれています。",
+    "description": "既にブロックされているドメインを追加しようとした時のエラーメッセージ。",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "pleaseEnterDomain": {
+    "message": "ドメインを入力してください。",
+    "description": "空のドメインを追加しようとした時のエラーメッセージ。"
+  },
+  "suggestionsUnavailable": {
+    "message": "提案はGoogleとBingの検索結果ページでのみ利用できます。",
+    "description": "ドメイン提案が利用できない時に表示されるメッセージ。"
+  },
+  "removeDomainBtnTitle": {
+    "message": "ドメインを削除",
+    "description": "ドメイン削除ボタンのタイトル。"
+  },
+  "addSuggestionBtn": {
+    "message": "追加",
+    "description": "推奨ドメインを追加するボタンのテキスト。"
+  },
+  "comingSoon": {
+    "message": "近日公開",
+    "description": "まだ実装されていない機能のテキスト。"
+  }
+}

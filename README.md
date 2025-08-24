@@ -1,10 +1,10 @@
-# Kitsune: Your Personal Google Search Filter
+# Kitsune: Your Personal Search Result Filter
 
-A simple but powerful Chrome Extension that empowers you to take control of your Google search results. Kitsune helps you filter out unwanted websites and focus on the information that matters most to you.
+A simple but powerful Chrome Extension that empowers you to take control of your Google and Bing search results. Kitsune helps you filter out unwanted websites and focus on the information that matters most to you.
 
 ## Why Kitsune?
 
-Are you tired of sifting through irrelevant search results? Do you wish you could permanently block certain websites from appearing in your searches? Kitsune is the solution you've been looking for. While Google allows you to use the `-site:` operator for temporary filtering, Kitsune provides a permanent and effortless way to customize your search experience.
+Are you tired of sifting through irrelevant search results? Do you wish you could permanently block certain websites from appearing in your searches? Kitsune is the solution you've been looking for. While Google and Bing allow you to use the `-site:` operator for temporary filtering, Kitsune provides a permanent and effortless way to customize your search experience on both search engines.
 
 ## Features
 
@@ -17,6 +17,20 @@ Are you tired of sifting through irrelevant search results? Do you wish you coul
 - **Clean and Simple UI:** A user-friendly interface makes it easy to manage your blocklist.
 
 ## Release History
+
+### Version 1.5.1
+
+-   **Future Search Engines Preview:** Added Yahoo and DuckDuckGo options to settings page (currently disabled as implementation is in development).
+-   **Language System Enhancement:** Fixed dynamic message translation to ensure all UI text updates correctly when switching languages.
+
+### Version 1.5
+
+-   **Bing Support:** Extended search result filtering to support Bing.com in addition to Google, providing a consistent filtering experience across multiple search engines.
+-   **Enhanced Settings:** Added granular control for enabling/disabling filtering on each supported search engine independently.
+-   **Improved Suggestions:** Updated domain suggestion feature to work seamlessly on both Google and Bing search results pages.
+-   **Multi-language Support:** Added Japanese translation and dynamic language switching system allowing users to change interface language without browser restart.
+
+## Previous Releases
 
 ### Version 1.4
 
