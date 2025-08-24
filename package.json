@@ -1,7 +1,7 @@
 {
-  "name": "search-result-filter",
-  "version": "1.4.0",
-  "description": "A browser extension that filters Google search results.",
+  "name": "kitsune",
+  "version": "1.5.1",
+  "description": "A browser extension that filters Google and Bing search results.",
   "main": "content.js",
   "scripts": {
     "lint": "eslint .",

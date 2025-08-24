@@ -1,4 +1,4 @@
-# Kitsune: Your Personal Search Result Filter
+# Kitsune: Search Result Filter
 
 A simple but powerful Chrome Extension that empowers you to take control of your Google and Bing search results. Kitsune helps you filter out unwanted websites and focus on the information that matters most to you.
 

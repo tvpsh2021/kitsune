@@ -4,8 +4,6 @@ let isFilterEnabled = true;
 // Detect current site
 const isGoogleSite = () => window.location.hostname.includes('google.com');
 const isBingSite = () => window.location.hostname.includes('bing.com');
-const isYahooSite = () => ['tw.search.yahoo.com', 'search.yahoo.co.jp', 'search.yahoo.com', 'hk.search.yahoo.com'].includes(window.location.hostname);
-const isDuckDuckGoSite = () => window.location.hostname.includes('duckduckgo.com');
 
 // Function to hide search results that match the blocked domains
 const hideBlockedResults = () => {
