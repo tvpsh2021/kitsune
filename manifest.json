@@ -28,11 +28,5 @@
     "16": "icons/kitsune-ver2-16.png",
     "48": "icons/kitsune-ver2-48.png",
     "128": "icons/kitsune-ver2-128.png"
-  },
-  "web_accessible_resources": [
-    {
-      "resources": ["_locales/*/messages.json"],
-      "matches": ["<all_urls>"]
-    }
-  ]
+  }
 }
